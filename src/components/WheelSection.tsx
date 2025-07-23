@@ -30,7 +30,8 @@ const WheelSection: React.FC<Props> = ({
             {participants.map((p, index) => {
               const sliceAngle = 360 / participants.length;
               const rotateSegment = index * sliceAngle;
-              const textRotate = -rotateSegment - sliceAngle / 2;
+              // Para transversal: el texto debe estar a 90 grados respecto al radio
+              const textRotate = -rotateSegment - sliceAngle / 3 + 90;
               const color = colors[index % colors.length];
               return (
                 <div
@@ -46,12 +47,13 @@ const WheelSection: React.FC<Props> = ({
                     style={{
                       transform: `rotate(${textRotate}deg)`,
                       position: 'absolute',
-                      left: '45%',
-                      top: '30px',
+                      left: '50%',
+                      top: '100px', // <-- Puedes ajustar este valor para mejor centrado
                       fontSize: '16px',
                       fontWeight: 'bold',
                       color: getTextColor(color),
                       textShadow: '1px 1px 3px rgba(0,0,0,0.8)',
+                      whiteSpace: 'nowrap',
                     }}
                   >
                     {p.name}

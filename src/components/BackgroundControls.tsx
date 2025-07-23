@@ -7,7 +7,12 @@ interface Props {
   clearBackground: () => void;
 }
 
-const BackgroundControls: React.FC<Props> = ({ background, handleBackgroundChange, fileInputRef, clearBackground }) => (
+const BackgroundControls: React.FC<Props> = ({
+  background,
+  handleBackgroundChange,
+  fileInputRef,
+  clearBackground,
+}) => (
   <div className="background-controls">
     <h3>🎨 Fondo</h3>
     <input
@@ -15,10 +20,13 @@ const BackgroundControls: React.FC<Props> = ({ background, handleBackgroundChang
       accept="image/*"
       onChange={handleBackgroundChange}
       ref={fileInputRef}
-      style={{ display: 'none' }}
     />
     <button onClick={() => fileInputRef.current?.click()}>Cargar Imagen</button>
-    {background && <button onClick={clearBackground}>Quitar Fondo</button>}
+    {background && (
+      <button onClick={clearBackground} style={{ background: '#fbeee0', color: '#e67e22' }}>
+        Quitar Fondo
+      </button>
+    )}
   </div>
 );
 

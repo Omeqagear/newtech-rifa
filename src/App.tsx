@@ -86,6 +86,32 @@ const App: React.FC = () => {
     );
   };
 
+  const handleBulkAdd = (bulk: { name: string; number: string }[]) => {
+  let added = 0;
+  const newParticipants = [...participants];
+  bulk.forEach(({ name, number }) => {
+    if (
+      name.trim() &&
+      number.trim() &&
+      !isDuplicate(name, number) &&
+      !newParticipants.some(
+        (p) =>
+          p.name.trim().toLowerCase() === name.trim().toLowerCase() ||
+          p.number.trim().toLowerCase() === number.trim().toLowerCase()
+      )
+    ) {
+      newParticipants.push({ name: name.trim(), number: number.trim() });
+      added++;
+    }
+  });
+  setParticipants(newParticipants);
+  if (added === 0) {
+    alert('No se agregaron participantes nuevos. Todos ya existen o los datos son inválidos.');
+  } else {
+    alert(`Se agregaron ${added} participantes nuevos.`);
+  }
+};
+
   const handleAddParticipant = (e: React.FormEvent) => {
     e.preventDefault();
     const trimmedName = name.trim();
@@ -198,10 +224,10 @@ const App: React.FC = () => {
   };
 
   const exportToCSV = () => {
-    const headers = ['Nombre', 'Número de Empleado', 'Fecha y Hora'];
+    const headers = ['Nombre', 'Codigo de Empleado', 'Fecha y Hora'];
     const rows = winnersHistory.map((record) => [
       record.name,
-      `#${record.number}`,
+      `${record.number}`,
       record.timestamp,
     ]);
     const csvContent = [
@@ -270,6 +296,7 @@ const App: React.FC = () => {
             setNumber={setNumber}
             handleAddParticipant={handleAddParticipant}
             isSpinning={isSpinning}
+            handleBulkAdd={handleBulkAdd}
           />
           <ParticipantsList
             participants={participants}

@@ -16,7 +16,7 @@ const WinnerModal: React.FC<Props> = ({ winner, closeModal }) => (
       <h2>🎉 ¡Felicidades!</h2>
       <div className="winner-info">
         <p><strong>Empleado:</strong> {winner.name}</p>
-        <p><strong>Número:</strong> #{winner.number}</p>
+        <p><strong>Codigo de Empleado:</strong> {winner.number}</p>
       </div>
       <button className="modal-button" onClick={closeModal}>
         Aceptar

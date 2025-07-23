@@ -16,7 +16,7 @@ const WinnersHistory: React.FC<{ winnersHistory: WinnerRecord[] }> = ({ winnersH
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Número</th>
+            <th>Codigo de Empleado</th>
             <th>Fecha y Hora</th>
           </tr>
         </thead>
@@ -24,7 +24,7 @@ const WinnersHistory: React.FC<{ winnersHistory: WinnerRecord[] }> = ({ winnersH
           {winnersHistory.map((record, index) => (
             <tr key={index}>
               <td>{record.name}</td>
-              <td>#{record.number}</td>
+              <td>{record.number}</td>
               <td>{record.timestamp}</td>
             </tr>
           ))}

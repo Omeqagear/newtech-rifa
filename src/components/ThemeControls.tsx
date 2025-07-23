@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface Props {
-  theme: "newtech" | "summer" | "christmas" | "halloween";
-  setTheme: React.Dispatch<React.SetStateAction<"newtech" | "summer" | "christmas" | "halloween">>;
+  theme: string;
+  setTheme: (theme: string) => void;
   useCustomTheme: boolean;
   setUseCustomTheme: (v: boolean) => void;
   customColors: string[];
@@ -10,11 +10,20 @@ interface Props {
 }
 
 const ThemeControls: React.FC<Props> = ({
-  theme, setTheme, useCustomTheme, setUseCustomTheme, customColors, setCustomColors
+  theme,
+  setTheme,
+  useCustomTheme,
+  setUseCustomTheme,
+  customColors,
+  setCustomColors,
 }) => (
   <div className="theme-controls">
     <h3>🎨 Paleta de Colores</h3>
-    <select value={theme} onChange={(e) => setTheme(e.target.value as "newtech" | "summer" | "christmas" | "halloween")} disabled={useCustomTheme}>
+    <select
+      value={theme}
+      onChange={(e) => setTheme(e.target.value)}
+      disabled={useCustomTheme}
+    >
       <option value="newtech">Newtech Oficial</option>
       <option value="summer">Verano</option>
       <option value="christmas">Navidad</option>
@@ -25,6 +34,7 @@ const ThemeControls: React.FC<Props> = ({
         type="checkbox"
         checked={useCustomTheme}
         onChange={(e) => setUseCustomTheme(e.target.checked)}
+        style={{ marginRight: 6 }}
       />
       Paleta personalizada
     </label>
@@ -40,6 +50,7 @@ const ThemeControls: React.FC<Props> = ({
               newColors[i] = e.target.value;
               setCustomColors(newColors);
             }}
+            style={{ width: 32, height: 32, border: 'none', background: 'none', cursor: 'pointer' }}
           />
         ))}
       </div>
