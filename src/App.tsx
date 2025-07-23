@@ -47,7 +47,7 @@ const App: React.FC = () => {
   const [showHistory, setShowHistory] = useState<boolean>(false);
   const [winnersHistory, setWinnersHistory] = useLocalStorage<WinnerRecord[]>('rifa_winners', []);
   const [showMenu, setShowMenu] = useState<boolean>(false);
-
+  
   const wheelRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -87,30 +87,30 @@ const App: React.FC = () => {
   };
 
   const handleBulkAdd = (bulk: { name: string; number: string }[]) => {
-  let added = 0;
-  const newParticipants = [...participants];
-  bulk.forEach(({ name, number }) => {
-    if (
-      name.trim() &&
-      number.trim() &&
-      !isDuplicate(name, number) &&
-      !newParticipants.some(
-        (p) =>
-          p.name.trim().toLowerCase() === name.trim().toLowerCase() ||
-          p.number.trim().toLowerCase() === number.trim().toLowerCase()
-      )
-    ) {
-      newParticipants.push({ name: name.trim(), number: number.trim() });
-      added++;
+    let added = 0;
+    const newParticipants = [...participants];
+    bulk.forEach(({ name, number }) => {
+      if (
+        name.trim() &&
+        number.trim() &&
+        !isDuplicate(name, number) &&
+        !newParticipants.some(
+          (p) =>
+            p.name.trim().toLowerCase() === name.trim().toLowerCase() ||
+            p.number.trim().toLowerCase() === number.trim().toLowerCase()
+        )
+      ) {
+        newParticipants.push({ name: name.trim(), number: number.trim() });
+        added++;
+      }
+    });
+    setParticipants(newParticipants);
+    if (added === 0) {
+      alert('No se agregaron participantes nuevos. Todos ya existen o los datos son inválidos.');
+    } else {
+      alert(`Se agregaron ${added} participantes nuevos.`);
     }
-  });
-  setParticipants(newParticipants);
-  if (added === 0) {
-    alert('No se agregaron participantes nuevos. Todos ya existen o los datos son inválidos.');
-  } else {
-    alert(`Se agregaron ${added} participantes nuevos.`);
-  }
-};
+  };
 
   const handleAddParticipant = (e: React.FormEvent) => {
     e.preventDefault();

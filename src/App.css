@@ -971,3 +971,30 @@ div[style*="position: fixed"] > canvas {
   background: #217dbb;
   color: #eaf6ff;
 }
+
+
+.logo-selector-label {
+  font-weight: 500;
+  color: #2980b9;
+  margin-right: 8px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-selector-select {
+  margin-left: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #dbeafe;
+  background: #f8fafc;
+  font-size: 15px;
+  color: #34495e;
+  transition: border 0.2s;
+}
+
+.logo-selector-select:focus {
+  border-color: #90cdf4;
+  background: #eaf6ff;
+}
