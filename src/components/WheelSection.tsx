@@ -8,7 +8,7 @@ interface Participant {
 interface Props {
   participants: Participant[];
   colors: string[];
-  wheelRef: React.RefObject<HTMLDivElement>;
+  wheelRef: React.RefObject<HTMLDivElement | null>;
   handleTransitionEnd: () => void;
   getTextColor: (bgColor: string) => string;
   spinWheel: () => void;

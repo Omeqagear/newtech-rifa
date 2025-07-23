@@ -1,8 +1,8 @@
 import React from 'react';
 
 interface Props {
-  theme: string;
-  setTheme: (theme: string) => void;
+  theme: "newtech" | "summer" | "christmas" | "halloween";
+  setTheme: React.Dispatch<React.SetStateAction<"newtech" | "summer" | "christmas" | "halloween">>;
   useCustomTheme: boolean;
   setUseCustomTheme: (v: boolean) => void;
   customColors: string[];
@@ -14,7 +14,7 @@ const ThemeControls: React.FC<Props> = ({
 }) => (
   <div className="theme-controls">
     <h3>🎨 Paleta de Colores</h3>
-    <select value={theme} onChange={(e) => setTheme(e.target.value)} disabled={useCustomTheme}>
+    <select value={theme} onChange={(e) => setTheme(e.target.value as "newtech" | "summer" | "christmas" | "halloween")} disabled={useCustomTheme}>
       <option value="newtech">Newtech Oficial</option>
       <option value="summer">Verano</option>
       <option value="christmas">Navidad</option>

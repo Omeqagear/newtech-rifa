@@ -3,7 +3,7 @@ import React from 'react';
 interface Props {
   background: string;
   handleBackgroundChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  fileInputRef: React.RefObject<HTMLInputElement>;
+  fileInputRef: React.RefObject<HTMLInputElement | null>;
   clearBackground: () => void;
 }
 

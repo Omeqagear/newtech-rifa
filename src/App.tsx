@@ -165,13 +165,7 @@ const App: React.FC = () => {
     }
   };
 
-  const getColors = () => {
-    if (useCustomTheme) return customColors;
-    return themes[theme];
-  };
-
-  const colors = getColors();
-
+  // Function to launch confetti
   const launchConfetti = () => {
     const end = Date.now() + 3 * 1000;
     const colors = ['#a864fd', '#29d8d5', '#ef007d', '#ffcc00', '#d40000'];
